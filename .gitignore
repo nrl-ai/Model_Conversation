@@ -1,0 +1,8 @@
+*.onnx
+*.bin
+*.param
+*.pt
+*.pth
+*.pyc
+*.so
+*.o

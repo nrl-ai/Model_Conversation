@@ -34,17 +34,4 @@ if __name__ == "__main__":
     x = torch.randn(args.batch_size, 3, 112, 112).to(device)
     torch_out = model(x)
 
-    torch.onnx.export(
-        model,
-        x,
-        args.onnx_name,
-        export_params=True,
-        opset_version=10,
-        do_constant_folding=True,
-        input_names=["input"],
-        output_names=["output"],
-        dynamic_axes={
-            "input": {0: "batch_size"},
-            "output": {0: "batch_size"},
-        },
-    )
+    torch_out = torch.onnx._export(model, x, args.onnx_name, export_params=True)
